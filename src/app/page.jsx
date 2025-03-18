@@ -2,10 +2,11 @@
 
 import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import { Bolt, Car, CreditCard, Hammer, Lock, PaintRoller, Search, ShieldCheck, Sparkles, Star, ThumbsUp, ThumbsUpIcon, Timer, UserRoundSearch, Wrench } from 'lucide-react';
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import Image from 'next/image';
+import Stars from './_components/Stars';
 
 const Home = () => {
 
@@ -74,56 +75,58 @@ const Home = () => {
         }
     ];
 
-    const howItWorks = [
-
+    const TestimonalsData = [
+        {
+            "name": "Sophia Patel",
+            "review": "This product exceeded my expectations! The quality and customer service were top-notch. Highly recommended!",
+            "rating": 5
+        },
+        {
+            "name": "James Carter",
+            "review": "Very satisfied with my purchase. The user experience was smooth, and delivery was quick!",
+            "rating": 4.5
+        },
+        {
+            "name": "Aisha Khan",
+            "review": "Amazing experience! The team was very helpful, and the product works perfectly. Will buy again!",
+            "rating": 5
+        },
+        {
+            "name": "Liam Johnson",
+            "review": "Great product and excellent support. The attention to detail is impressive. Worth every penny!",
+            "rating": 1.5
+        },
+        {
+            "name": "Emily Chen",
+            "review": "I was skeptical at first, but this has been a game-changer for me. Easy to use and great results!",
+            "rating": 3.2
+        },
+        {
+            "name": "Daniel Smith",
+            "review": "Fast shipping and great packaging. The quality is outstanding, and I will definitely recommend it to others.",
+            "rating": 5
+        }
     ];
 
     return (
         <div>
             {/* Hero section */}
             <div className='md:h-fit md:w-screen max-md:h-fit max-md:w-screen flex items-center justify-center'>
-                <Swiper
-                    modules={[Autoplay]}
-                    spaceBetween={0}
-                    effect="fade"
-                    fadeEffect={{ crossFade: true }}
-                    speed={1000}
-                    slidesPerView={1}
-                    autoplay={{ delay: 5000, disableOnInteraction: false }}
-                    loop
-                    className="w-full h-screen"
-                >
-                    {[{
-                        web: "/Hero1.jpg",
-                        mobile: "/hero1mobile.jpg"
-                    },
-                    {
-                        mobile: "/heroimg2.jpg",
-                        web: "/heroimgdekstop2.jpg"
-                    }].map((img, index) => (
-                        <SwiperSlide key={index}>
-                            <div
-                                className={`p-2 relative inset-0 max-md:h-full max-md:w-screen md:w-[95%] md:h-[95%] bg-cover md:rounded-lg 
+                <div
+                    className={`p-2 relative inset-0 max-md:h-fit max-md:w-screen md:w-[95%] md:h-fit bg-cover md:rounded-lg 
               grayscale-25`}
-                                style={{
-                                    backgroundImage: `url(${img?.mobile})`,
-                                    backgroundSize: "cover",
-                                    backgroundPosition: "center",
-                                    backgroundRepeat: "no-repeat",
-                                    ...(window.innerWidth >= 768 && {
-                                        backgroundImage: `url(${img?.web})`,
-                                    }),
-                                }}
-                            >
-                                <div className="absolute inset-0 bg-black/70"></div>
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-
-                <div>
-                    {/* fixed to show the content on the smaller screens */}
-                    <div className='absolute max-md:inset-0 z-10 max-md:top-30'>
+                    style={{
+                        backgroundImage: `url(/hero1mobile.jpg)`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                        ...(window.innerWidth >= 768 && {
+                            backgroundImage: `url(/Hero1.jpg )`,
+                        }),
+                    }}
+                >
+                    <div className="absolute inset-0 z-0 bg-black/70"></div>
+                    <div className='relative mt-12 mb-10 z-30'>
                         <h2 className='text-white text-3xl font-semibold text-center'>
                             Welcome to GoHelp! <br /> The Ultimate Service Finder!
                         </h2>
@@ -146,6 +149,33 @@ const Home = () => {
                             </button>
                         </div>
                     </div>
+                </div>
+
+                <div>
+                    {/* fixed to show the content on the smaller screens */}
+                    {/* <div className='absolute max-md:inset-0 z-10 max-md:top-30'>
+                        <h2 className='text-white text-3xl font-semibold text-center'>
+                            Welcome to GoHelp! <br /> The Ultimate Service Finder!
+                        </h2>
+                        <div className='px-3'>
+                            <h3 className='text-white text-2xl mb-3 self-start text-start font-semibold mt-5'>
+                                Find Skilled Professionals Instantly
+                            </h3>
+                            <p className='break-all text-white/80'>
+                                Need a plumber, electrician or any skilled worker? We’ve got you covered! Our platform connects you with trusted professionals near you in just a few clicks.
+                            </p>
+
+                            <h4 className='mt-10 text-xl text-white'>
+                                Get Started Now! Find the best workers in your area today.
+                            </h4>
+                            <button className='px-5 py-2 my-3 rounded-md bg-white/90 hover:bg-white/95 duration-300 font-semibold text-lg outline-2 outline-black/10 hover:outline-black/30 outline-offset-1'>
+                                Join Now
+                            </button>
+                            <button className='px-5 py-2 my-3 rounded-md bg-[#181818] hover:bg-[#181818]/90 ml-5 text-white duration-300 font-semibold text-lg outline-3 outline-white/60 hover:outline-white/90'>
+                                Hire Now
+                            </button>
+                        </div>
+                    </div> */}
                 </div>
 
             </div>
@@ -350,7 +380,73 @@ const Home = () => {
 
                 </div>
             </div>
-        </div>
+
+            {/* Testimonals */}
+            <div className='space-y-3'>
+                <div className='flex flex-col items-start px-3'>
+                    <h2 className='text-3xl font-semibold'>
+                        Testimonials
+                    </h2>
+                    <p className='text-xs text-purple-700'>
+                        Real customer reviews & ratings
+                    </p>
+                </div>
+                {/* first card */}
+                <Swiper
+                    modules={[Navigation, Pagination, Autoplay]}
+                    navigation
+                    pagination={{ clickable: true }}
+                    autoplay={{ delay: 3000 }}
+                    loop={true}
+                    spaceBetween={20}
+                    slidesPerView={1}
+                >
+                    {
+                        // stars to show and also option to check the post or the person who got the review
+                        TestimonalsData.map((oneTestimonal) => {
+                            return (
+                                <SwiperSlide>
+                                    <div className='mx-auto flex items-start h-fit w-[340px] my-3 border border-[#E9ECF2] rounded-xl'>
+                                        <div className="relative min-w-3/6 max-w-3/6 min-h-full h-45">
+                                            <Image
+                                                src={'/image.webp'}
+                                                alt='profileImage'
+                                                layout='fill'
+                                                className='rounded-xl'
+                                                objectFit='cover'
+                                            />
+                                        </div>
+                                        <div className='p-2 flex flex-col items-start justify-between min-h-full h-44 gap-1'>
+                                            <div className='flex flex-col items-start'>
+                                                <h3 className='text-lg font-medium'>
+                                                    {
+                                                        oneTestimonal.name
+                                                    }
+                                                </h3>
+                                                <p className='text-xs text-slate-600/60 line-clamp-6'>
+                                                    {
+                                                        oneTestimonal.review
+                                                    }
+                                                </p>
+                                                <span>
+                                                    {
+                                                        <Stars className="border border-gray-300" rating={oneTestimonal.rating} />
+                                                    }
+                                                </span>
+                                            </div>
+                                            <button className='text-xs py-[7px] text-white px-2 rounded-lg broder border-gray-300 bg-[#131313]'>
+                                                Contact Worker
+                                            </button>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            )
+                        })
+                    }
+
+                </Swiper>
+            </div>
+        </div >
     )
 }
 
